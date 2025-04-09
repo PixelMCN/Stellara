@@ -1,11 +1,11 @@
 import nextcord
 from nextcord.ext import commands
-from config import BOT_TOKEN  
-
+from config import BOT_TOKEN  # Ensure BOT_TOKEN is defined in config.py
 
 intents = nextcord.Intents.default()
 intents.message_content = True
-
+intents.guilds = True
+intents.members = True  # Required for kick/ban commands
 
 bot = commands.Bot(command_prefix="$", intents=intents)
 
@@ -14,14 +14,12 @@ async def on_ready():
     print(f"Bot is ready! Logged in as {bot.user}")
     print(f"-------------------------------------")
 
-# returns the bot's latency
-@bot.slash_command()
-async def ping(interaction: nextcord.Interaction):
-    """Returns the bot's latency."""
-    latency = round(bot.latency * 1000)  # Convert latency to milliseconds
-    await interaction.response.send_message(f"Pong! Latency: {latency}ms")
+# Load cogs
+initial_extensions = ["cogs.general", "cogs.moderation"]
 
-
+if __name__ == "__main__":
+    for extension in initial_extensions:
+        bot.load_extension(extension)
 
 bot.run(BOT_TOKEN)
 
