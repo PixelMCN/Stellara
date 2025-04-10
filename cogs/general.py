@@ -10,7 +10,7 @@ class General(commands.Cog):
     @nextcord.slash_command()
     async def ping(self, interaction: nextcord.Interaction):
         """Returns the bot's latency."""
-        latency = round(self.bot.latency * 1000)  # Convert latency to milliseconds
+        latency = round(self.bot.latency * 1000)  
         await interaction.response.send_message(f"Pong! Latency: {latency}ms")
 
 def setup(bot):

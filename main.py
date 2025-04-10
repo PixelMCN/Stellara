@@ -1,11 +1,11 @@
 import nextcord
 from nextcord.ext import commands
-from config import BOT_TOKEN  # Ensure BOT_TOKEN is defined in config.py
+from config import BOT_TOKEN  
 
 intents = nextcord.Intents.default()
 intents.message_content = True
 intents.guilds = True
-intents.members = True  # Required for kick/ban commands
+intents.members = True  
 
 bot = commands.Bot(command_prefix="$", intents=intents)
 
@@ -22,9 +22,3 @@ if __name__ == "__main__":
         bot.load_extension(extension)
 
 bot.run(BOT_TOKEN)
-
-
-
-
-
-
