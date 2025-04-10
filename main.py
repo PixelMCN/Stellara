@@ -1,6 +1,8 @@
 import nextcord
-from nextcord.ext import commands
-from config import BOT_TOKEN  
+from nextcord.ext import commands  
+import os
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 intents = nextcord.Intents.default()
 intents.message_content = True
